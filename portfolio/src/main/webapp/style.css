@@ -7,3 +7,16 @@
 #greeting-container {
   margin-top: 20px;
 }
+
+div {
+  width: 300px;
+  border: 15px gray;
+  padding: 50px;
+  margin: 20px;
+}
+
+img {
+  border-radius: 50%;
+  height: 300px;
+  width: 300px;
+}
