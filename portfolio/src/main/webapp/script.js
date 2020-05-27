@@ -17,7 +17,7 @@
 **/ 
 function addRandomGreeting() {
   const greetings =
-      ['I am left handed', 'I go to Barnard College in NYC', 'Slow down and enjor the simple pleasures of life', 'Do not count the days, make the days count'];
+      ['I am left handed', 'I attend Barnard College in NYC', 'Slow down and enjoy the simple pleasures of life', 'Do not count the days, make the days count'];
 
   // Pick a random greeting.
   const greeting = greetings[Math.floor(Math.random() * greetings.length)];
@@ -29,20 +29,3 @@ function addRandomGreeting() {
 
 
 
-/**
- * Adds a random fact to the page.
- 
-
-function addRandomGreeting() {
-  const facts = 
-     ['I am left handed', 'I used to play the piano', 'I go to Barnard College in NYC', 'I major in CS and minor in History and Architecte'];
-
-  // Pick a random fact
-  const fact = facts[Math.floor(Math.random() * facts.length)];
-
-  // Add it to the page
-  const factContainer = document.getElementbyId('greeting-container');
-  factContainer.innerText=fact;
-}
-
-*/
