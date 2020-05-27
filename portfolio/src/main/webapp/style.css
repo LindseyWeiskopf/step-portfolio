@@ -1,3 +1,7 @@
+body {
+  background-color: #fcf8bb;
+}
+
 div {
   margin-left: auto;
   margin-right: auto;
@@ -10,6 +14,11 @@ h1, h2 {
 
 p, ul {
   font-family: Poppins, sans-serif;
+}
+
+#content {
+  background-color: #bbd4fc;
+  opacity: 70%
 }
 
 #greeting-container {
