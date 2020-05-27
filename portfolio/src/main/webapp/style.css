@@ -7,6 +7,11 @@ div {
 h1, h2 {
   font-family: Chewy, san-serif; 
 }
+
+p, ul {
+  font-family: Poppins, sans-serif;
+}
+
 #greeting-container {
   margin-top: 20px;
 }
