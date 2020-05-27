@@ -1,4 +1,4 @@
-#content {
+div {
   margin-left: auto;
   margin-right: auto;
   width: 650px;
@@ -6,4 +6,25 @@
 
 #greeting-container {
   margin-top: 20px;
+}
+
+#introduction img {
+  border-radius: 50%;
+  height: 300px;
+  width: 300px;
+
+.image-thumbnails {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.image-thumbnails img {
+  margin: 10px;
+  max-height: 200px;
+  max-width: 200px;
+}
+
+.image-thumbnails img:hover {
+  border: thick solid pink;
 }
