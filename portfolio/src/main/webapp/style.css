@@ -12,6 +12,7 @@ div {
   border-radius: 50%;
   height: 300px;
   width: 300px;
+}
 
 .image-thumbnails {
   display: flex;
@@ -21,10 +22,10 @@ div {
 
 .image-thumbnails img {
   margin: 10px;
-  max-height: 200px;
-  max-width: 200px;
+  max-height: 250px;
+  max-width: 250px;
 }
 
 .image-thumbnails img:hover {
-  border: thick solid pink;
+  border: thick solid rgb(240, 106, 128);
 }
