@@ -4,6 +4,9 @@ div {
   width: 650px;
 }
 
+h1, h2 {
+  font-family: Chewy, san-serif; 
+}
 #greeting-container {
   margin-top: 20px;
 }
