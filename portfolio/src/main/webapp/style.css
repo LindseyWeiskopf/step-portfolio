@@ -18,7 +18,8 @@ p, ul {
 
 #content {
   background-color: #bbd4fc;
-  opacity: 70%
+  padding: 5px;
+  opacity: 70%;
 }
 
 #greeting-container {
@@ -29,6 +30,7 @@ p, ul {
   border-radius: 50%;
   height: 300px;
   width: 300px;
+  border:thick solid #bbd4fc;
 }
 
 .image-thumbnails {
