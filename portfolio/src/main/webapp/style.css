@@ -12,7 +12,7 @@ div {
   border-radius: 50%;
   height: 300px;
   width: 300px;
-
+}
 .image-thumbnails {
   display: flex;
   flex-wrap: wrap;
