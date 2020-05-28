@@ -19,7 +19,7 @@
 //Get Randome greeting using arrow function -- fetches greeting from server and displays on the page
 function getRandomGreeting() {
   fetch('/random-greeting').then(response => response.text()).then((greeting) => {
-    document.getElementById('quote-container').innerText = greeting;
+    document.getElementById('greeting-container').innerText = greeting;
   });
 }
 
