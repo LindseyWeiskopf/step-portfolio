@@ -10,6 +10,7 @@ div {
 
 h1, h2 {
   font-family: Chewy, san-serif; 
+  color: #01245d;
 }
 
 p, ul {
@@ -20,6 +21,7 @@ p, ul {
   background-color: #bbd4fc;
   padding: 5px;
   opacity: 70%;
+  border: thick solid #06419e;
 }
 
 #greeting-container {
