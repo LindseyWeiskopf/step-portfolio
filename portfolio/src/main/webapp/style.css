@@ -52,3 +52,26 @@ p, ul, a {
 .image-thumbnails img:hover {
   border: thick solid rgb(240, 106, 128);
 }
+
+.top-nav {
+  background-color: #02255e;
+  overflow: hidden;
+}
+
+.top-nav a {
+  float: left;
+  text-align: center;
+  padding: 14px 16px;
+  font-size: 16px;
+  color: whitesmoke;
+}
+
+.top-nav a:hover {
+  background-color: lightgray;
+  color: #02255e;
+}
+
+.top-nav a.active{
+  background-color: #ed11b6;
+  color: whitesmoke;
+}

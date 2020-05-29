@@ -12,20 +12,29 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-/**
- * Adds a random greeting to the page.
-**/ 
-function addRandomGreeting() {
-  const greetings =
-      ['I am left handed', 'I attend Barnard College in NYC', 'Slow down and enjoy the simple pleasures of life', 'Do not count the days, make the days count'];
 
-  // Pick a random greeting.
-  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
 
-  // Add it to the page.
-  const greetingContainer = document.getElementById('greeting-container');
-  greetingContainer.innerText = greeting;
+
+
+//Get Randome greeting using arrow function -- fetches greeting from server and displays on the page
+function getRandomGreeting() {
+  fetch('/data').then(response => response.json()).then((greeting) => {
+    const listElement = document.getElementById('greeting-container');
+    listElement.innerHTML = '';
+
+    var i;
+    for(i=0; i<greeting.length; i++) {
+      listElement.appendChild(
+          createListElement(greeting[i]));
+    }
+  });
 }
 
+/** Creates an <li> element containing text. */
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text;
+  return liElement;
+}
 
 
