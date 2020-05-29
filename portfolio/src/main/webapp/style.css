@@ -1,7 +1,22 @@
+body {
+  background-color: #fcf8bb;
+}
+
 div {
   margin-left: auto;
   margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
   width: 650px;
+}
+
+h1, h2 {
+  font-family: Chewy, san-serif; 
+  color: #01245d;
+}
+
+p, ul, a {
+  font-family: Poppins, sans-serif;
 }
 
 #greeting-container {
@@ -12,7 +27,16 @@ div {
   border-radius: 50%;
   height: 300px;
   width: 300px;
+  border:thick solid #bbd4fc;
 }
+
+.content {
+  background-color: #bbd4fc;
+  padding: 5px;
+  opacity: 70%;
+  border: thick solid #06419e;
+}
+
 .image-thumbnails {
   display: flex;
   flex-wrap: wrap;
@@ -21,12 +45,12 @@ div {
 
 .image-thumbnails img {
   margin: 10px;
-  max-height: 200px;
-  max-width: 200px;
+  max-height: 250px;
+  max-width: 250px;
 }
 
 .image-thumbnails img:hover {
-  border: thick solid pink;
+  border: thick solid rgb(240, 106, 128);
 }
 
 .top-nav {
