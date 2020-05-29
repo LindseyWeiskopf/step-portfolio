@@ -19,13 +19,6 @@ p, ul, a {
   font-family: Poppins, sans-serif;
 }
 
-#content {
-  background-color: #bbd4fc;
-  padding: 5px;
-  opacity: 70%;
-  border: thick solid #06419e;
-}
-
 #greeting-container {
   margin-top: 20px;
 }
@@ -35,6 +28,13 @@ p, ul, a {
   height: 300px;
   width: 300px;
   border:thick solid #bbd4fc;
+}
+
+.content {
+  background-color: #bbd4fc;
+  padding: 5px;
+  opacity: 70%;
+  border: thick solid #06419e;
 }
 
 .image-thumbnails {
