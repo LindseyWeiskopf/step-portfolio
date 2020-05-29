@@ -13,7 +13,7 @@ h1, h2 {
   color: #01245d;
 }
 
-p, ul {
+p, ul, a {
   font-family: Poppins, sans-serif;
 }
 
