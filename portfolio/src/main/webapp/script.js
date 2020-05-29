@@ -21,12 +21,12 @@ function getRandomGreeting() {
   fetch('/data').then(response => response.json()).then((greeting) => {
     const listElement = document.getElementById('greeting-container');
     listElement.innerHTML = '';
-    listElement.appendChild (
-      createListElement(greeting[0] + ' '));
-    listElement.appendChild (
-      createListElement(greeting[1] + ' '));
-    listElement.appendChild (
-      createListElement(greeting[2] + ' '));
+
+    var i;
+    for(i=0; i<greeting.length; i++) {
+      listElement.appendChild(
+          createListElement(greeting[i]));
+    }
   });
 }
 
