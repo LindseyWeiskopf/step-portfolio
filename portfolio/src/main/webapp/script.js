@@ -22,8 +22,7 @@ function getRandomGreeting() {
     const listElement = document.getElementById('greeting-container');
     listElement.innerHTML = '';
 
-    var i;
-    for(i=0; i<greeting.length; i++) {
+    for(var i=0; i<greeting.length; i++) {
       listElement.appendChild(
           createListElement(greeting[i]));
     }
