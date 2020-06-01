@@ -3,11 +3,12 @@
   <head>
     <meta charset="UTF-8">
     <title>Contact Me</title>
+    <script src="script.js"></script>
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chewy">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">  
   </head>
-  <body>
+  <body onload="getComments()">
     <div class="top-nav">
       <a href="index.html">Home</a>
       <a href="gallery.html">Gallery</a>
@@ -27,9 +28,10 @@
         <textarea name="comment-input" placeholder="Hello, tell me about..."></textarea>
         <br/><br/>
 
-        <input type="submit" />
+        <input type="submit"/>
 
       </form>
+      <ul id="greeting-container"></ul>
     </div>
   </body>
    

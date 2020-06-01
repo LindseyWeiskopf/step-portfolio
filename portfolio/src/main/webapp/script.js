@@ -14,14 +14,29 @@
 
 
 
-
+/*
 
 //Get Randome greeting using arrow function -- fetches greeting from server and displays on the page
 function getRandomGreeting() {
   fetch('/data').then(response => response.text()).then((greeting) => {
     document.getElementById('greeting-container').innerText = greeting;
   });
+}*/
+function getComments() {
+  fetch('/data').then(response => response.json()).then((posts) => {
+      const liElement = document.getElementById('greeting-container');
+      posts.forEach((post) => {
+        liElement.appendChild(createListElement(post));
+    })
+  }); 
 }
+
+function createListElement(text) {
+  const liElement = document.createElement('li');
+  liElement.innerText = text.comment;
+  return liElement;
+}
+
 
 
 
