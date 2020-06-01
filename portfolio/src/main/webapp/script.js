@@ -18,23 +18,11 @@
 
 //Get Randome greeting using arrow function -- fetches greeting from server and displays on the page
 function getRandomGreeting() {
-  fetch('/data').then(response => response.json()).then((greeting) => {
-    const listElement = document.getElementById('greeting-container');
-    listElement.innerHTML = '';
-
-    var i;
-    for(i=0; i<greeting.length; i++) {
-      listElement.appendChild(
-          createListElement(greeting[i]));
-    }
+  fetch('/data').then(response => response.text()).then((greeting) => {
+    document.getElementById('greeting-container').innerText = greeting;
   });
 }
 
-/** Creates an <li> element containing text. */
-function createListElement(text) {
-  const liElement = document.createElement('li');
-  liElement.innerText = text;
-  return liElement;
-}
+
 
 
