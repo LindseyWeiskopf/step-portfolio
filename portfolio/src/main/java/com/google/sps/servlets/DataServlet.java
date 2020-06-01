@@ -18,6 +18,9 @@ import com.google.appengine.api.datastore.DatastoreService;
 import com.google.appengine.api.datastore.DatastoreServiceFactory;
 import com.google.appengine.api.datastore.Entity;
 import java.io.IOException;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.gson.Gson;
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +56,8 @@ public class DataServlet extends HttpServlet {
     String message = messages.get((int) (Math.random() * messages.size()));
     response.setContentType("text/html;");
     response.getWriter().println(message);
+
+
   }
 
   @Override
