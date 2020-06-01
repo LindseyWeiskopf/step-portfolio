@@ -27,8 +27,12 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/data")
 public class DataServlet extends HttpServlet {
 
-  private ArrayList<String> messages;
+  private ArrayList<String> names;
+  private ArrayList<String> emails; 
+  private ArrayList<String> comments;
 
+  private ArrayList<String> messages;
+ 
   @Override
   public void init() {
     messages = new ArrayList<>();
@@ -42,6 +46,13 @@ public class DataServlet extends HttpServlet {
     String json = convertToJson(messages);
     response.setContentType("application/json;");
     response.getWriter().println(json);
+  }
+
+   @Override
+  public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    String name = request.getParameter("name-input");
+    String email = request.getParameter("email-input");
+    String comment = request.getParameter("comment-input");
   }
 
   private String convertToJson(ArrayList<String> messages){
