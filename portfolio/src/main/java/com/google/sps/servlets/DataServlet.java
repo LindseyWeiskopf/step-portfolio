@@ -35,7 +35,6 @@ public class DataServlet extends HttpServlet {
  
   @Override
   public void init() {
-
     names = new ArrayList<>();
     emails = new ArrayList<>();
     comments = new ArrayList<>();
@@ -53,16 +52,16 @@ public class DataServlet extends HttpServlet {
     response.getWriter().println(message);
   }
 
-   @Override
+  @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String name = request.getParameter("name-input");
     String email = request.getParameter("email-input");
     String comment = request.getParameter("comment-input");
+
+    response.sendRedirect("http://lweiskopf-step-2020.appspot.com/contact.html");
     
     names.add(name);
     emails.add(email);
     comments.add(comment);
-  
   }
-
 }
