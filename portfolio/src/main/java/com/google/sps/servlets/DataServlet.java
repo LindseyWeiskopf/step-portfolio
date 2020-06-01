@@ -44,14 +44,17 @@ public class DataServlet extends HttpServlet {
     messages.add("Hey, how are you?");
     messages.add("Good morning, friend!");
   }
-
+  
+  //Gets information from the server to display to the user. Picks a random message from the 
+  //messages arraylist and sends the response instance to the screen
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String message = messages.get((int) (Math.random() * messages.size()));
     response.setContentType("text/html;");
     response.getWriter().println(message);
   }
-
+  
+  //Posts information to the server to save as inputs from the data form
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String name = request.getParameter("name-input");
