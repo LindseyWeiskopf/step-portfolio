@@ -31,7 +31,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
-@WebServlet("/data")
+@WebServlet("/comments")
 public class DataServlet extends HttpServlet {
 
   private ArrayList<String> names;
@@ -58,20 +58,21 @@ public class DataServlet extends HttpServlet {
     //response.setContentType("text/html;");
   //  response.getWriter().println(message);
 
-    Query query = new Query("Post").addSort("name", SortDirection.DESCENDING);
+    Query query = new Query("Post").addSort("timestamp", SortDirection.DESCENDING);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
-
-    List<Post> posts = new ArrayList<>();
+    System.out.println(results);
+    List<String> posts = new ArrayList<>();
     for (Entity entity : results.asIterable()) {
-      long id = entity.getKey().getId();
-      String name = (String) entity.getProperty("name");
-      String email = (String) entity.getProperty("email");
+      System.out.println("Entity Build");
+     // long id = entity.getKey().getId();
+      //String name = (String) entity.getProperty("name");
+      //String email = (String) entity.getProperty("email");
       String comment = (String) entity.getProperty("comment");
-
-      Post post = new Post(id, name, email, comment);
-      posts.add(post);
+      
+      //Post post = new Post(id, name, email, comment);
+      posts.add(comment);
     }
 
     Gson gson = new Gson();
@@ -87,6 +88,7 @@ public class DataServlet extends HttpServlet {
     String name = request.getParameter("name-input");
     String email = request.getParameter("email-input");
     String comment = request.getParameter("comment-input");
+    long timestamp = System.currentTimeMillis(); 
     /**
     names.add(name);
     emails.add(email);
@@ -99,9 +101,12 @@ public class DataServlet extends HttpServlet {
     commentEntity.setProperty("name", name);
     commentEntity.setProperty("email", email);
     commentEntity.setProperty("comment", comment);
+    commentEntity.setProperty("timestamp", timestamp);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(commentEntity);
+
+    response.sendRedirect("/contact.html");
   }
 
 }
