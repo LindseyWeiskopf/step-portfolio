@@ -44,7 +44,7 @@ public class DataServlet extends HttpServlet {
     
     List<Post> posts = new ArrayList<>();
 
-    for (Entity entity : results.asIterable(FetchOptions.Builder.withLimit(2))) {
+    for (Entity entity : results.asIterable(FetchOptions.Builder.withLimit(2)) {
       long id = entity.getKey().getId();
       long timestamp = (long) entity.getProperty("timestamp");
       String name = (String) entity.getProperty("name");
@@ -65,7 +65,8 @@ public class DataServlet extends HttpServlet {
     String name = request.getParameter("name-input");
     String email = request.getParameter("email-input");
     String comment = request.getParameter("comment-input");
-    long timestamp = System.currentTimeMillis(); 
+    long timestamp = System.currentTimeMillis();
+    
 
     Entity commentEntity = new Entity("Comment");
     commentEntity.setProperty("name", name);
@@ -77,6 +78,21 @@ public class DataServlet extends HttpServlet {
     datastore.put(commentEntity);
 
     response.sendRedirect("/contact.html");
+  }
+
+  private int getCommentNum(HttpServletRequest request) {
+    String numChoiceString = request.getParameter("quantity");
+
+    // Convert the input to an int.
+    int commentNum;
+    try {
+      commentNum = Integer.parseInt(numChoiceString);
+    } catch (NumberFormatException e) {
+      System.err.println("Could not convert to int: " + numChoiceString);
+      return -1;
+    }
+
+    return commentNum;
   }
 
 }
