@@ -26,7 +26,6 @@ function getComments() {
   fetch('/comments').then(response => response.json()).then((posts) => {
       const liElement = document.getElementById('greeting-container');
       posts.forEach((post) => {
-        console.log("Each Post");
         liElement.appendChild(createPostElement(post));
     })
   }); 
@@ -44,7 +43,16 @@ function createPostElement(post) {
   return postElement;
 }
 
-
+ 
+function addRandomGreeting() {
+  const greetings = 
+     ['Hey, How are you?', 'Good Morning, friend!', 'Howdy, yall', 'Today\'s going to be the best day ever'];
+  // Pick a random fact
+  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
+  // Add it to the page
+  const greetingContainer = document.getElementById('greeting-container');
+  greetingContainer.innerText = greeting;
+}
 
 
 
