@@ -54,24 +54,22 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-   // String message = messages.get((int) (Math.random() * messages.size()));
-    //response.setContentType("text/html;");
-  //  response.getWriter().println(message);
 
     Query query = new Query("Post").addSort("timestamp", SortDirection.DESCENDING);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
-    System.out.println(results);
-    List<String> posts = new ArrayList<>();
+    
+    
+   List<String> posts = new ArrayList<>();
+   System.out.println(results);
     for (Entity entity : results.asIterable()) {
       System.out.println("Entity Build");
-     // long id = entity.getKey().getId();
-      //String name = (String) entity.getProperty("name");
-      //String email = (String) entity.getProperty("email");
+      long id = entity.getKey().getId();
+      String name = (String) entity.getProperty("name");
+      String email = (String) entity.getProperty("email");
       String comment = (String) entity.getProperty("comment");
       
-      //Post post = new Post(id, name, email, comment);
       posts.add(comment);
     }
 

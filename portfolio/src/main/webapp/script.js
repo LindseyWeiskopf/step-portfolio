@@ -25,18 +25,19 @@ function getRandomGreeting() {
 function getComments() {
   fetch('/comments').then(response => response.json()).then((posts) => {
       const liElement = document.getElementById('greeting-container');
-      posts.forEach((post) => {
-        liElement.appendChild(createPostElement(post));
+      posts.forEach((comment) => {
+        console.log("Each Post");
+        liElement.appendChild(createPostElement(comment));
     })
   }); 
 }
 
-function createPostElement(post) {
+function createPostElement(comment) {
   const postElement = document.createElement('li');
   postElement.className = 'post';
 
   const commentElement = document.createElement('span');
-  commentElement.innerText = post.comment;
+  commentElement.innerText = comment;
 
   postElement.appendChild(commentElement);
 
