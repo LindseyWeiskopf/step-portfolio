@@ -23,18 +23,24 @@ function getRandomGreeting() {
   });
 }*/
 function getComments() {
-  fetch('/data').then(response => response.json()).then((posts) => {
+  fetch('/comments').then(response => response.json()).then((posts) => {
       const liElement = document.getElementById('greeting-container');
       posts.forEach((post) => {
-        liElement.appendChild(createListElement(post));
+        liElement.appendChild(createPostElement(post));
     })
   }); 
 }
 
-function createListElement(text) {
-  const liElement = document.createElement('li');
-  liElement.innerText = text.comment;
-  return liElement;
+function createPostElement(post) {
+  const postElement = document.createElement('li');
+  postElement.className = 'post';
+
+  const commentElement = document.createElement('span');
+  commentElement.innerText = post.comment;
+
+  postElement.appendChild(commentElement);
+
+  return postElement;
 }
 
 
