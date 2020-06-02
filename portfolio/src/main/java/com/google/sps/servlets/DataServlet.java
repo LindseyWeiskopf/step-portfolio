@@ -42,9 +42,6 @@ public class DataServlet extends HttpServlet {
  
   @Override
   public void init() {
-    names = new ArrayList<>();
-    emails = new ArrayList<>();
-    comments = new ArrayList<>();
 
     messages = new ArrayList<>();
     messages.add("Howdy");
@@ -55,22 +52,22 @@ public class DataServlet extends HttpServlet {
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
-    Query query = new Query("Post").addSort("timestamp", SortDirection.DESCENDING);
-
+    Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
+    System.out.println(query);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
     
-    
-   List<String> posts = new ArrayList<>();
-   System.out.println(results);
+    List<Post> posts = new ArrayList<>();
+
     for (Entity entity : results.asIterable()) {
-      System.out.println("Entity Build");
       long id = entity.getKey().getId();
+      long timestamp = (long) entity.getProperty("timestamp");
       String name = (String) entity.getProperty("name");
       String email = (String) entity.getProperty("email");
       String comment = (String) entity.getProperty("comment");
       
-      posts.add(comment);
+      Post post = new Post(id, name, email, comment, timestamp);
+      posts.add(post);
     }
 
     Gson gson = new Gson();
@@ -87,14 +84,7 @@ public class DataServlet extends HttpServlet {
     String email = request.getParameter("email-input");
     String comment = request.getParameter("comment-input");
     long timestamp = System.currentTimeMillis(); 
-    /**
-    names.add(name);
-    emails.add(email);
-    comments.add(comment);
 
-    response.setContentType("text/html;");
-    response.getWriter().println("<p>" + name + " says \"" + comment + "\"</p>");
-    **/
     Entity commentEntity = new Entity("Comment");
     commentEntity.setProperty("name", name);
     commentEntity.setProperty("email", email);
