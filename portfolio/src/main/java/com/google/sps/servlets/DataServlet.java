@@ -29,6 +29,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import com.google.appengine.api.datastore.FetchOptions;
 
 /** Servlet that returns some example content. TODO: modify this file to handle comments data */
 @WebServlet("/comments")
@@ -43,7 +44,7 @@ public class DataServlet extends HttpServlet {
     
     List<Post> posts = new ArrayList<>();
 
-    for (Entity entity : results.asIterable()) {
+    for (Entity entity : results.asIterable(FetchOptions.Builder.withLimit(2))) {
       long id = entity.getKey().getId();
       long timestamp = (long) entity.getProperty("timestamp");
       String name = (String) entity.getProperty("name");
