@@ -13,15 +13,6 @@
 // limitations under the License.
 
 
-
-/*
-
-//Get Randome greeting using arrow function -- fetches greeting from server and displays on the page
-function getRandomGreeting() {
-  fetch('/data').then(response => response.text()).then((greeting) => {
-    document.getElementById('greeting-container').innerText = greeting;
-  });
-}*/
 function getComments() {
   fetch('/comments').then(response => response.json()).then((posts) => {
       const liElement = document.getElementById('greeting-container');
@@ -43,7 +34,6 @@ function createPostElement(post) {
   return postElement;
 }
 
- 
 function addRandomGreeting() {
   const greetings = 
      ['Hey, How are you?', 'Good Morning, friend!', 'Howdy, yall', 'Today\'s going to be the best day ever'];

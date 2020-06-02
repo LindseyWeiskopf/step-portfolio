@@ -34,26 +34,10 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/comments")
 public class DataServlet extends HttpServlet {
 
-  private ArrayList<String> names;
-  private ArrayList<String> emails; 
-  private ArrayList<String> comments;
-
-  private ArrayList<String> messages;
- 
-  @Override
-  public void init() {
-
-    messages = new ArrayList<>();
-    messages.add("Howdy");
-    messages.add("Hey, how are you?");
-    messages.add("Good morning, friend!");
-  }
-
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
     Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
-    System.out.println(query);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
     
@@ -71,11 +55,8 @@ public class DataServlet extends HttpServlet {
     }
 
     Gson gson = new Gson();
-
     response.setContentType("application/json;");
     response.getWriter().println(gson.toJson(posts));
-
-
   }
 
   @Override
