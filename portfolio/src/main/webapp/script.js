@@ -14,7 +14,9 @@
 
 
 function getComments() {
-  fetch('/comments').then(response => response.json()).then((posts) => {
+  var commentNum = parseInt(document.getElementById('quantity').value);
+ 
+  fetch('/comments?quantity=' + commentNum).then(response => response.json()).then((posts) => {
       const liElement = document.getElementById('greeting-container');
       posts.forEach((post) => {
         liElement.appendChild(createPostElement(post));
