@@ -41,10 +41,9 @@ public class DataServlet extends HttpServlet {
     Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
-    
     List<Post> posts = new ArrayList<>();
 
-    for (Entity entity : results.asIterable(FetchOptions.Builder.withLimit(2)) {
+    for (Entity entity : results.asIterable(FetchOptions.Builder.withLimit(getCommentNum(request)))) {
       long id = entity.getKey().getId();
       long timestamp = (long) entity.getProperty("timestamp");
       String name = (String) entity.getProperty("name");
@@ -82,16 +81,14 @@ public class DataServlet extends HttpServlet {
 
   private int getCommentNum(HttpServletRequest request) {
     String numChoiceString = request.getParameter("quantity");
-
+   
     // Convert the input to an int.
     int commentNum;
     try {
       commentNum = Integer.parseInt(numChoiceString);
     } catch (NumberFormatException e) {
-      System.err.println("Could not convert to int: " + numChoiceString);
-      return -1;
+      return 10;
     }
-
     return commentNum;
   }
 
