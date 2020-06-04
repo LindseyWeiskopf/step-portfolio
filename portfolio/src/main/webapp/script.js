@@ -39,6 +39,11 @@ function createPostElement(post) {
   return postElement;
 }
 
+function deleteComments() {
+  const request = new Request('/delete-comment', {method: 'POST'});
+  fetch(request).then(response => getComments());
+}
+
 function addRandomGreeting() {
   const greetings = 
      ['Hey, How are you?', 'Good Morning, friend!', 'Howdy, yall', 'Today\'s going to be the best day ever'];
