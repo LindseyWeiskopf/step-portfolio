@@ -40,19 +40,9 @@ public class DataServlet extends HttpServlet {
     Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     PreparedQuery results = datastore.prepare(query);
-    List<Post> posts = new ArrayList<>();
-
-    for (Entity entity : results.asIterable(FetchOptions.Builder.withLimit(getCommentNum(request)))) {
-      long id = entity.getKey().getId();
-      long timestamp = (long) entity.getProperty("timestamp");
-      String name = (String) entity.getProperty("name");
-      String email = (String) entity.getProperty("email");
-      String comment = (String) entity.getProperty("comment");
-      
-      Post post = new Post(id, name, email, comment, timestamp);
-      posts.add(post);
-    }
-
+    
+    List<Post> posts = entityToList(results, request);
+    
     response.setContentType("application/json;");
     response.getWriter().println(convertToJson(posts));
   }
@@ -100,5 +90,22 @@ public class DataServlet extends HttpServlet {
     commentEntity.setProperty("timestamp", timestamp);
     return commentEntity;
   }
+  
+  private List<Post> entityToList(PreparedQuery results, HttpServletRequest request) {
 
+    List<Post> posts = new ArrayList<>();
+
+    for (Entity entity : results.asIterable(FetchOptions.Builder.withLimit(getCommentNum(request)))) {
+      long id = entity.getKey().getId();
+      long timestamp = (long) entity.getProperty("timestamp");
+      String name = (String) entity.getProperty("name");
+      String email = (String) entity.getProperty("email");
+      String comment = (String) entity.getProperty("comment");
+      
+      Post post = new Post(id, name, email, comment, timestamp);
+     
+      posts.add(post);
+    }  
+    return posts;  
+  }
 }
