@@ -1,5 +1,6 @@
 package com.google.sps.data;
 
+/* A post object populated with data from form on contact.html */
 public final class Post {
   private final long id;
   private final String name;
