@@ -53,9 +53,8 @@ public class DataServlet extends HttpServlet {
       posts.add(post);
     }
 
-    Gson gson = new Gson();
     response.setContentType("application/json;");
-    response.getWriter().println(gson.toJson(posts));
+    response.getWriter().println(convertToJson(posts));
   }
 
   @Override
@@ -89,6 +88,12 @@ public class DataServlet extends HttpServlet {
       return 10;
     }
     return commentNum;
+  }
+
+  private String convertToJson(List<Post> posts) {
+    Gson gson = new Gson();
+    String json = gson.toJson(posts);
+    return json;
   }
 
 }
