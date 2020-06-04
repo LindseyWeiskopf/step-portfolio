@@ -45,8 +45,7 @@ public class DataServlet extends HttpServlet {
     messages.add("Good morning, friend!");
   }
   
-  /** Gets information from the server to display to the user. Picks a random message from the 
-  messages arraylist and sends the response instance to the screen */
+  /** Picks a random message from the messages arraylist and sends the response instance to the screen */
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String message = messages.get((int) (Math.random() * messages.size()));
