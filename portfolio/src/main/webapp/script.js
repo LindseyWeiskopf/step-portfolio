@@ -14,8 +14,11 @@
 
 
 function getComments() {
+
+  document.getElementById('greeting-container').innerHTML = "";
   var commentNum = parseInt(document.getElementById('quantity').value);
- 
+  
+
   fetch('/comments?quantity=' + commentNum).then(response => response.json()).then((posts) => {
       const liElement = document.getElementById('greeting-container');
       posts.forEach((post) => {
