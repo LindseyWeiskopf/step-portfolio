@@ -30,7 +30,6 @@ function createPostElement(post) {
   commentElement.innerText = post.comment;
 
   postElement.appendChild(commentElement);
-
   return postElement;
 }
 
