@@ -59,17 +59,7 @@ public class DataServlet extends HttpServlet {
 
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String name = request.getParameter("name-input");
-    String email = request.getParameter("email-input");
-    String comment = request.getParameter("comment-input");
-    long timestamp = System.currentTimeMillis();
-    
-
-    Entity commentEntity = new Entity("Comment");
-    commentEntity.setProperty("name", name);
-    commentEntity.setProperty("email", email);
-    commentEntity.setProperty("comment", comment);
-    commentEntity.setProperty("timestamp", timestamp);
+    Entity commentEntity = createEntity(request);
 
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(commentEntity);
@@ -94,6 +84,21 @@ public class DataServlet extends HttpServlet {
     Gson gson = new Gson();
     String json = gson.toJson(posts);
     return json;
+  }
+
+  private Entity createEntity(HttpServletRequest request) {
+    String name = request.getParameter("name-input");
+    String email = request.getParameter("email-input");
+    String comment = request.getParameter("comment-input");
+    long timestamp = System.currentTimeMillis();
+    
+
+    Entity commentEntity = new Entity("Comment");
+    commentEntity.setProperty("name", name);
+    commentEntity.setProperty("email", email);
+    commentEntity.setProperty("comment", comment);
+    commentEntity.setProperty("timestamp", timestamp);
+    return commentEntity;
   }
 
 }
