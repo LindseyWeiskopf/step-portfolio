@@ -16,7 +16,7 @@
 
 
 
-//Get Randome greeting using arrow function -- fetches greeting from server and displays on the page
+// Get Randome greeting using arrow function -- fetches greeting from server and displays on the page
 function getRandomGreeting() {
   fetch('/data').then(response => response.json()).then((greeting) => {
     const listElement = document.getElementById('greeting-container');
@@ -30,18 +30,17 @@ function getRandomGreeting() {
   });
 }
 
-/** Creates an <li> element containing text. */
+// Creates an <li> element containing text.
 function createListElement(text) {
   const liElement = document.createElement('li');
   liElement.innerText = text;
   return liElement;
 }
 
-/** Creates a map and adds it to the page. */
+// Creates a map and adds it to the page.
 function initMap() {
-
   const map = new google.maps.Map(
       document.getElementById('map'),
-      {center: {lat: 39.412, lng: -76.775}, zoom: 16});
+      {center: {lat: 39.412, lng: -76.775}, zoom: 16, mapTypeId: google.maps.MapTypeId.ROADMAP});
 }
 
