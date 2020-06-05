@@ -75,3 +75,18 @@ p, ul, a {
   background-color: #ed11b6;
   color: whitesmoke;
 }
+
+.post {
+  border: thin solid black;
+  display: flex;
+  padding: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 650px;
+}
+
+.post span {
+  flex-grow: 1;
+}

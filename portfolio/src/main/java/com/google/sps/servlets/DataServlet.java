@@ -14,8 +14,15 @@
 
 package com.google.sps.servlets;
 
+import com.google.appengine.api.datastore.DatastoreService;
+import com.google.appengine.api.datastore.DatastoreServiceFactory;
+import com.google.appengine.api.datastore.Entity;
 import java.io.IOException;
+import com.google.appengine.api.datastore.PreparedQuery;
+import com.google.appengine.api.datastore.Query;
+import com.google.appengine.api.datastore.Query.SortDirection;
 import com.google.gson.Gson;
+import com.google.sps.data.Post;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.annotation.WebServlet;
@@ -23,47 +30,55 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/** Servlet that returns some example content. */
-@WebServlet("/data")
+// Servlet that returns some example content. TODO: modify this file to handle comments data 
+@WebServlet("/comments")
 public class DataServlet extends HttpServlet {
-
-  private ArrayList<String> names;
-  private ArrayList<String> emails; 
-  private ArrayList<String> comments;
-
-  private ArrayList<String> messages;
- 
-  @Override
-  public void init() {
-    names = new ArrayList<>();
-    emails = new ArrayList<>();
-    comments = new ArrayList<>();
-
-    messages = new ArrayList<>();
-    messages.add("Howdy");
-    messages.add("Hey, how are you?");
-    messages.add("Good morning, friend!");
-  }
   
-  /** Picks a random message from the messages arraylist and sends the response instance to the screen */
+  // TODO: Create helper functions for this method
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-    String message = messages.get((int) (Math.random() * messages.size()));
-    response.setContentType("text/html;");
-    response.getWriter().println(message);
+
+    Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    PreparedQuery results = datastore.prepare(query);
+    
+    List<Post> posts = new ArrayList<>();
+
+    for (Entity entity : results.asIterable()) {
+      long id = entity.getKey().getId();
+      long timestamp = (long) entity.getProperty("timestamp");
+      String name = (String) entity.getProperty("name");
+      String email = (String) entity.getProperty("email");
+      String comment = (String) entity.getProperty("comment");
+      
+      Post post = new Post(id, name, email, comment, timestamp);
+      posts.add(post);
+    }
+
+    Gson gson = new Gson();
+    response.setContentType("application/json;");
+    response.getWriter().println(gson.toJson(posts));
   }
   
-  /** Posts information to the server to save as inputs from the data form */
+  // Posts information to the server to save as inputs from the data form
+  // TODO: Create helper functions for this method
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String name = request.getParameter("name-input");
     String email = request.getParameter("email-input");
     String comment = request.getParameter("comment-input");
+    long timestamp = System.currentTimeMillis(); 
 
-    response.sendRedirect("http://lweiskopf-step-2020.appspot.com/contact.html");
-    
-    names.add(name);
-    emails.add(email);
-    comments.add(comment);
+    Entity commentEntity = new Entity("Comment");
+    commentEntity.setProperty("name", name);
+    commentEntity.setProperty("email", email);
+    commentEntity.setProperty("comment", comment);
+    commentEntity.setProperty("timestamp", timestamp);
+
+    DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
+    datastore.put(commentEntity);
+
+    response.sendRedirect("/contact.html");
   }
+
 }
