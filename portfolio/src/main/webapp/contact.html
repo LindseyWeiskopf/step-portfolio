@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Contact Me</title>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chewy">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">  
+  </head>
+  <body onload="getComments()">
+    <div class="top-nav">
+      <a href="index.html">Home</a>
+      <a href="gallery.html">Gallery</a>
+      <a class="active" href="contact.html">Contact</a>
+    </div> 
+
+    <div>
+      <h1>Contact me here</h1>
+      <form method="POST" action="/comments">
+        <p>Name</p>
+        <input type="text" name="name-input" placeholder="Your Name"/>
+        <br/><br/>
+        <p>Email</p>
+        <input type="text" name="email-input" placeholder="hello@gmail.com"/>
+        <br/><br/>
+        <p>Comments</p>
+        <textarea name="comment-input" placeholder="Hello, tell me about..."></textarea>
+        <br/><br/>
+        <input type="submit"/>
+      </form> 
+
+      <br></br>  
+      <label for="quantity">Comments shown:</label>
+      <input type="number" id="quantity" name="quantity" min="1" max="20">
+      <br></br>
+      <input type="submit" onclick="getComments()"/>
+      <br/><br/>
+    </div>  
+    <ul id="greeting-container"></ul>
+    
+    <div>
+    <button type="button" onclick="deleteComments()">Delete all comments</button>
+    </div>
+  </body>
+   
+</html>
