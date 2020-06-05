@@ -14,7 +14,12 @@
 
 
 function getComments() {
-  fetch('/comments').then(response => response.json()).then((posts) => {
+
+  document.getElementById('greeting-container').innerHTML = "";
+  var commentNum = parseInt(document.getElementById('quantity').value);
+  
+
+  fetch('/comments?quantity=' + commentNum).then(response => response.json()).then((posts) => {
       const liElement = document.getElementById('greeting-container');
       posts.forEach((post) => {
         liElement.appendChild(createPostElement(post));
@@ -31,6 +36,11 @@ function createPostElement(post) {
 
   postElement.appendChild(commentElement);
   return postElement;
+}
+
+function deleteComments() {
+  const request = new Request('/delete-comment', {method: 'POST'});
+  fetch(request).then(response => getComments());
 }
 
 function addRandomGreeting() {
