@@ -41,6 +41,7 @@ function createListElement(text) {
 function initMap() {
   const map = new google.maps.Map(
       document.getElementById('map'),
+      // Coordinates center map  around Baltimore, MD
       {center: {lat: 39.412, lng: -76.775}, zoom: 16, mapTypeId: google.maps.MapTypeId.ROADMAP});
 }
 
