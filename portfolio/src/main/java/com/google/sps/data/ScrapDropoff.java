@@ -8,6 +8,6 @@ public final class ScrapDropoff {
 
   public ScrapDropoff(double lat, double lng) {
     this.lat = lat;
-    this.long = lng;
+    this.lng = lng;
   }
 }

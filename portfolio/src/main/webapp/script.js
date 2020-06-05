@@ -70,5 +70,5 @@ function initMap() {
       new googe.maps.Marker(
         {position: {lat: dropoff.lat, lng: dropoff.lng}, map: map});
       });
-  }); 
+  });
 }

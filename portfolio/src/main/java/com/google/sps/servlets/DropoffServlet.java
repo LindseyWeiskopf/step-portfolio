@@ -3,6 +3,7 @@ package com.google.sps.servlets;
 import com.google.sps.data.ScrapDropoff;
 import com.google.gson.Gson;
 import java.io.IOException;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Scanner;
@@ -20,7 +21,7 @@ public class DropoffServlet extends HttpServlet {
   
   @Override
   public void init(){
-    dropoffs = new ArrayList<ScrapDropoff>;
+    dropoffs = new ArrayList<>();
     Scanner scanner = new Scanner(getServletContext().getResourceAsStream("/WEB-INF/dropoff-locations.csv"));
     while (scanner.hasNextLine()) {
       String line = scanner.nextLine();
