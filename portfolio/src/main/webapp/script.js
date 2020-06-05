@@ -16,7 +16,7 @@
 
 
 
-// Get Randome greeting using arrow function -- fetches greeting from server and displays on the page
+// Get Random greeting using arrow function -- fetches greeting from server and displays on the page
 function getRandomGreeting() {
   fetch('/data').then(response => response.json()).then((greeting) => {
     const listElement = document.getElementById('greeting-container');
@@ -39,9 +39,13 @@ function createListElement(text) {
 
 // Creates a map and adds it to the page.
 function initMap() {
-  const map = new google.maps.Map(
-      document.getElementById('map'),
-      // Coordinates center map  around Baltimore, MD
-      {center: {lat: 39.412, lng: -76.775}, zoom: 16, mapTypeId: google.maps.MapTypeId.ROADMAP});
+  // Coordinates center map  around Baltimore, MD
+  var myLatlng = new google.maps.LatLng(39.412, -76,775);
+  var mapOptions = {
+    center: myLatlng, 
+    zoom: 12, 
+    mapTypeId: 'roadmap'
+  };
+  const map = new google.maps.Map(document.getElementById('map'), mapOptions);
 }
 
