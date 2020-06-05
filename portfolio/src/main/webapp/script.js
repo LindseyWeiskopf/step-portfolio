@@ -31,11 +31,12 @@ function createPostElement(post) {
   postElement.className = 'post';
 
   const commentElement = document.createElement('span');
-  commentElement.innerText = post.comment;
-
+  commentElement.innerText = post.comment; 
+  
   postElement.appendChild(commentElement);
   return postElement;
 }
+
 
 function deleteComments() {
   const request = new Request('/delete-comment', {method: 'POST'});
@@ -52,5 +53,16 @@ function addRandomGreeting() {
   greetingContainer.innerText = greeting;
 }
 
+// Creates a map and adds it to the page.
+function initMap() {
+  // Coordinates center map  around Baltimore, MD
+  var myLatlng = new google.maps.LatLng(39.412, -76,775);
+  var mapOptions = {
+    center: myLatlng, 
+    zoom: 12, 
+    mapTypeId: 'roadmap'
+  };
+  const map = new google.maps.Map(document.getElementById('map'), mapOptions);
+}
 
 

@@ -7,8 +7,10 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chewy">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
     <script src="script.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkCH60ejk__5Qi0nRt849T3QxbEoCbPvk&callback=initMap"
+  type="text/javascript"></script>
   </head>
-  <body>
+  <body onload="initMap()"">
 
     <div class="top-nav">
       <a class="active" href="index.html">Home</a>
@@ -42,6 +44,10 @@
     </div>
     <div class="content">
       <p>Click <a href="gallery.html">here</a> to see some images that I like.</p>
+    </div>
+    <div class="content">
+      <p>Find me here</p>
+      <div id="map"></div>
     </div>
   </body>
 </html>

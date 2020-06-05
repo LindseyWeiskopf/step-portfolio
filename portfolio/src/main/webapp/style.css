@@ -31,6 +31,12 @@ p, ul, a {
   border:thick solid #bbd4fc;
 }
 
+#map {
+  border: thin solid #06419e;
+  height: 500px;
+  width: 500px;
+}
+
 .content {
   background-color: #bbd4fc;
   padding: 5px;
