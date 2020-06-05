@@ -30,10 +30,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
+// Servlet that returns some example content. TODO: modify this file to handle comments data 
 @WebServlet("/comments")
 public class DataServlet extends HttpServlet {
-
+  
+  // TODO: Create helper functions for this method
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
@@ -59,7 +60,8 @@ public class DataServlet extends HttpServlet {
     response.getWriter().println(gson.toJson(posts));
   }
   
-  //Posts information to the server to save as inputs from the data form
+  // Posts information to the server to save as inputs from the data form
+  // TODO: Create helper functions for this method
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String name = request.getParameter("name-input");
