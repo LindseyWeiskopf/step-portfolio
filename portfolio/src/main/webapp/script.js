@@ -56,13 +56,19 @@ function addRandomGreeting() {
 // Creates a map and adds it to the page.
 function initMap() {
   // Coordinates center map  around Baltimore, MD
-  var myLatlng = new google.maps.LatLng(39.412, -76,775);
-  var mapOptions = {
-    center: myLatlng, 
-    zoom: 12, 
-    mapTypeId: 'roadmap'
-  };
-  const map = new google.maps.Map(document.getElementById('map'), mapOptions);
+  fetch('/dropoff-data').then(response => response.json()).then((dropoffs) => {
+    const map = new google.maps.Map(document.getElementById('map'), mapOptions);
+ 
+    var myLatlng = new google.maps.LatLng(40.808864, -73.963049);
+    var mapOptions = {
+      center: myLatlng, 
+      zoom: 12, 
+     mapTypeId: 'roadmap'
+    };
+
+    dropoffs.forEach((dropoff) => {
+      new googe.maps.Marker(
+        {position: {lat: dropoff.lat, lng: dropoff.lng}, map: map});
+      });
+  }); 
 }
-
-
