@@ -67,7 +67,7 @@ function initMap() {
     };
 
     dropoffs.forEach((dropoff) => {
-      new googe.maps.Marker(
+      new google.maps.Marker(
         {position: {lat: dropoff.lat, lng: dropoff.lng}, map: map});
       });
   });
