@@ -36,7 +36,7 @@ import com.google.appengine.api.datastore.FetchOptions;
 public class DataServlet extends HttpServlet {
   
   private final int DEFAULT_QUANTITY = 10;
-
+  
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     Query query = new Query("Comment").addSort("timestamp", SortDirection.DESCENDING);
@@ -48,7 +48,8 @@ public class DataServlet extends HttpServlet {
     response.setContentType("application/json;");
     response.getWriter().println(convertToJson(posts));
   }
-
+  
+  // Posts information to the server to save as inputs from the data form
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     Entity commentEntity = createEntity(request);
@@ -79,11 +80,11 @@ public class DataServlet extends HttpServlet {
   }
 
   private Entity createEntity(HttpServletRequest request) {
+
     String name = request.getParameter("name-input");
     String email = request.getParameter("email-input");
     String comment = request.getParameter("comment-input");
-    long timestamp = System.currentTimeMillis();
-    
+    long timestamp = System.currentTimeMillis();   
 
     Entity commentEntity = new Entity("Comment");
     commentEntity.setProperty("name", name);
