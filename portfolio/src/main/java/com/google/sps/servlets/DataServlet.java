@@ -31,9 +31,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.google.appengine.api.datastore.FetchOptions;
 
-/** Servlet that returns some example content. TODO: modify this file to handle comments data */
+// Servlet that returns some example content. 
 @WebServlet("/comments")
 public class DataServlet extends HttpServlet {
+  
+  private final int DEFAULT_QUANTITY = 10;
 
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -65,7 +67,7 @@ public class DataServlet extends HttpServlet {
     try {
       commentNum = Integer.parseInt(numChoiceString);
     } catch (NumberFormatException e) {
-      return 10;
+      return DEFAULT_QUANTITY;
     }
     return commentNum;
   }
