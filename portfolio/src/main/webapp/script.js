@@ -13,17 +13,44 @@
 // limitations under the License.
 
 
+function getComments() {
 
-
-
-//Get Randome greeting using arrow function -- fetches greeting from server and displays on the page
-function getRandomGreeting() {
-  fetch('/data').then(response => response.text()).then((greeting) => {
-    document.getElementById('greeting-container').innerText = greeting;
-
-  });
+  document.getElementById('greeting-container').innerHTML = "";
+  var commentNum = parseInt(document.getElementById('quantity').value);
+  
+  fetch('/comments?quantity=' + commentNum).then(response => response.json()).then((posts) => {
+      const liElement = document.getElementById('greeting-container');
+      posts.forEach((post) => {
+        liElement.appendChild(createPostElement(post));
+    })
+  }); 
 }
 
+function createPostElement(post) {
+  const postElement = document.createElement('li');
+  postElement.className = 'post';
+
+  const commentElement = document.createElement('span');
+  commentElement.innerText = post.comment;
+
+  postElement.appendChild(commentElement);
+  return postElement;
+}
+
+function deleteComments() {
+  const request = new Request('/delete-comment', {method: 'POST'});
+  fetch(request).then(response => getComments());
+}
+
+function addRandomGreeting() {
+  const greetings = 
+     ['Hey, How are you?', 'Good Morning, friend!', 'Howdy, yall', 'Today\'s going to be the best day ever'];
+  // Pick a random fact
+  const greeting = greetings[Math.floor(Math.random() * greetings.length)];
+  // Add it to the page
+  const greetingContainer = document.getElementById('greeting-container');
+  greetingContainer.innerText = greeting;
+}
 
 
 
