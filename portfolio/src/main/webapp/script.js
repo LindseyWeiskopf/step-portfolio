@@ -53,22 +53,25 @@ function addRandomGreeting() {
   greetingContainer.innerText = greeting;
 }
 
-// Creates a map and adds it to the page.
+// Creates a map and adds it to the page with markers on compost-dropoff locations.
 function initMap() {
-  // Coordinates center map  around Baltimore, MD
-  fetch('/dropoff-data').then(response => response.json()).then((dropoffs) => {
-    const map = new google.maps.Map(document.getElementById('map'), mapOptions);
+  // Coordinates centers map  around NYC
+  var myLatlng = {lat: 40.763232, lng: -73.951047};
+  var mapOptions = {
+    center: myLatlng, 
+    zoom: 12, 
+  };
+  const map = new google.maps.Map(document.getElementById('map'), mapOptions);
  
-    var myLatlng = new google.maps.LatLng(40.808864, -73.963049);
-    var mapOptions = {
-      center: myLatlng, 
-      zoom: 12, 
-     mapTypeId: 'roadmap'
-    };
+  fetch('/dropoff-data').then(response => response.json()).then((dropoffs) => {
 
     dropoffs.forEach((dropoff) => {
-      new google.maps.Marker(
-        {position: {lat: dropoff.lat, lng: dropoff.lng}, map: map});
+      var marker = new google.maps.Marker({
+        position: {lat: dropoff.lat, lng: dropoff.lng}, 
+        map: map,
       });
+      marker.setMap(map);
+      google.maps.event.trigger(map, 'resize');
+    });
   });
 }
