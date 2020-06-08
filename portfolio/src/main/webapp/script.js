@@ -63,13 +63,14 @@ function initMap() {
     mapTypeControl: false 
   };
   const map = new google.maps.Map(document.getElementById('map'), mapOptions);
- 
+  var image = 'http://maps.google.com/mapfiles/kml/pal4/icon47.png';
   fetch('/dropoff-data').then(response => response.json()).then((dropoffs) => {
 
     dropoffs.forEach((dropoff) => {
       var marker = new google.maps.Marker({
         position: {lat: dropoff.lat, lng: dropoff.lng}, 
         map: map,
+        icon: image
       });
       marker.setMap(map);
       google.maps.event.trigger(map, 'resize');
