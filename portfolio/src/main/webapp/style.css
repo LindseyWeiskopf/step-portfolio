@@ -1,3 +1,4 @@
+
 body {
   background-color: #fcf8bb;
 }
@@ -7,7 +8,7 @@ div {
   margin-right: auto;
   margin-top: 20px;
   margin-bottom: 20px;
-  width: 650px;
+  width: 650px; 
 }
 
 h1, h2 {
