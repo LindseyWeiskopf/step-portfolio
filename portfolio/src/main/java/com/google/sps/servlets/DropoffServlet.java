@@ -17,8 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/dropoff-data")
 public class DropoffServlet extends HttpServlet {
   
-  private List<ScrapDropoff> dropoffs;
+  private Collection<ScrapDropoff> dropoffs;
   
+  // Create array list with parse csv values as ScrapDropoff objects
   @Override
   public void init(){
     dropoffs = new ArrayList<>();
@@ -35,7 +36,7 @@ public class DropoffServlet extends HttpServlet {
     scanner.close();
   }
 
-   @Override
+  @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     response.setContentType("application/json");
     Gson gson = new Gson();
