@@ -52,17 +52,19 @@ function addRandomGreeting() {
   greetingContainer.innerText = greeting;
 }
 
-// Global variables that apply across functions
 var map, heatmap;
 var heatmapData = [];
 
 // Creates a map and heatmap layer
 function initMap() {
-  // Coordinates centers map  around NYC
-  var myLatlng = {lat: 40.763232, lng: -73.951047};
+  // Default center point of map (approx. Roosevelt Island)
+  const myLatlng = {lat: 40.763232, lng: -73.951047};
+  // Default zoom factor on map
+  const zoomNum = 14;
+  
   var mapOptions = {
     center: myLatlng, 
-    zoom: 14,
+    zoom: zoomNum,
     mapTypeControl: false 
   };
   map = new google.maps.Map(document.getElementById('map'), mapOptions);
@@ -73,7 +75,7 @@ function initMap() {
 
 // Iterates through coordinates and delivers to other functions
 function getCoords() {
-  var image = 'http://maps.google.com/mapfiles/kml/pal4/icon47.png';
+  const image = 'images/marker.png';
   fetch('/dropoff-data').then(response => response.json()).then((dropoffs) => {
 
     dropoffs.forEach((dropoff) => {
