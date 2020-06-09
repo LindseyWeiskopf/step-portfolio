@@ -55,17 +55,18 @@ function addRandomGreeting() {
 
 // Creates a map and adds it to the page with markers on compost-dropoff locations.
 function initMap() {
-  // Coordinates centers map  around NYC
-  var myLatlng = {lat: 40.763232, lng: -73.951047};
+  // Coordinate marks Roosevelt Island, will be center of original map displayed
+  const myLatlng = {lat: 40.763232, lng: -73.951047};
   var mapOptions = {
     center: myLatlng, 
     zoom: 12,
     mapTypeControl: false 
   };
   const map = new google.maps.Map(document.getElementById('map'), mapOptions);
-  var image = 'http://maps.google.com/mapfiles/kml/pal4/icon47.png';
+  // Image of dropoff marker, star
+  const image = 'http://maps.google.com/mapfiles/kml/pal4/icon47.png';
+  
   fetch('/dropoff-data').then(response => response.json()).then((dropoffs) => {
-
     dropoffs.forEach((dropoff) => {
       var marker = new google.maps.Marker({
         position: {lat: dropoff.lat, lng: dropoff.lng}, 
