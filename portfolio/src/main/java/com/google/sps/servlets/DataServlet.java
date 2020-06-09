@@ -49,6 +49,7 @@ public class DataServlet extends HttpServlet {
     List<Post> posts = entityToList(results, request);
     
     response.setContentType("application/json;");
+    response.setCharacterEncoding("UTF-8");
     response.getWriter().println(convertToJson(posts));
   }
   
