@@ -1,5 +1,6 @@
 package com.google.sps.data;
 
+// A coordinate object with lat and lng attributes
 public final class Coordinate {
     public final double lat;
     public final double lng;
