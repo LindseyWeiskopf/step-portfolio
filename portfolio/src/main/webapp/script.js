@@ -37,7 +37,6 @@ function createPostElement(post) {
   return postElement;
 }
 
-
 function deleteComments() {
   const request = new Request('/delete-comment', {method: 'POST'});
   fetch(request).then(response => getComments());
@@ -53,28 +52,60 @@ function addRandomGreeting() {
   greetingContainer.innerText = greeting;
 }
 
-// Creates a map and adds it to the page with markers on compost-dropoff locations.
+var map, heatmap;
+var heatmapData = [];
+
+// Creates a map and heatmap layer
 function initMap() {
-  // Coordinate marks Roosevelt Island, will be center of original map displayed
+
+  // Default center point of map (approx. Roosevelt Island)
   const myLatlng = {lat: 40.763232, lng: -73.951047};
+  // Default zoom factor on map
+  const zoomNum = 14;
   var mapOptions = {
     center: myLatlng, 
-    zoom: 12,
+    zoom: zoomNum,
     mapTypeControl: false 
   };
-  const map = new google.maps.Map(document.getElementById('map'), mapOptions);
-  // Image of dropoff marker, star
-  const image = 'http://maps.google.com/mapfiles/kml/pal4/icon47.png';
-  
+  map = new google.maps.Map(document.getElementById('map'), mapOptions);
+  getCoords();
+  createHeatmap();
+}
+
+// Iterates through coordinates and delivers to other functions
+function getCoords() {
+  const image = 'images/marker.png';
   fetch('/dropoff-data').then(response => response.json()).then((dropoffs) => {
     dropoffs.forEach((dropoff) => {
-      var marker = new google.maps.Marker({
-        position: {lat: dropoff.lat, lng: dropoff.lng}, 
-        map: map,
-        icon: image
-      });
-      marker.setMap(map);
-      google.maps.event.trigger(map, 'resize');
+      createMarkers(dropoff, image);
+      getHeatmapData(dropoff);
     });
+  });
+}
+
+function createMarkers(dropoff, image) {
+  var marker = new google.maps.Marker({
+    position: {lat: dropoff.lat, lng: dropoff.lng}, 
+    map: map,
+    icon: image
+  });
+  marker.setMap(map);
+  google.maps.event.trigger(map, 'resize');
+}
+
+function getHeatmapData(dropoff) {
+  var latLng = new google.maps.LatLng(dropoff.lat, dropoff.lng);
+  heatmapData.push(latLng);
+}
+
+function createHeatmap() {
+  heatmap = new google.maps.visualization.HeatmapLayer({
+    data: heatmapData,
+    dissipating: false,
+    map: map,
+    radius: 1,
+    opacity: 0.5,
+    // green gradient
+    gradient:[ '#ffffff','#ffff99','#ccff66','#66ff33','#33cc33','#009933']
   });
 }
