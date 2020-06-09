@@ -112,7 +112,6 @@ public class DataServlet extends HttpServlet {
       long timestamp = (long) entity.getProperty("timestamp");
       String name = (String) entity.getProperty("name");
       String email = (String) entity.getProperty("email");
-      //String comment = (String) entity.getProperty("comment");
       String comment = translateComment(request, entity);
       Post post = new Post(id, name, email, comment, timestamp);
      
