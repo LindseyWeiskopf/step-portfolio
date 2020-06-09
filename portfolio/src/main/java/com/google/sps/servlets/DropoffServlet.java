@@ -1,6 +1,7 @@
 package com.google.sps.servlets;
 
 import com.google.sps.data.ScrapDropoff;
+import com.google.sps.data.Coordinate;
 import com.google.gson.Gson;
 import java.io.IOException;
 import java.util.List;
@@ -12,7 +13,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-// Will send JSON formatted coordinates of dropoff locations to 
+// Sends JSON formatted coordinates of dropoff locations to 
 // script.js when fetched
 @WebServlet("/dropoff-data")
 public class DropoffServlet extends HttpServlet {
@@ -26,12 +27,8 @@ public class DropoffServlet extends HttpServlet {
     Scanner scanner = new Scanner(getServletContext().getResourceAsStream("/WEB-INF/dropoff-locations.csv"));
     while (scanner.hasNextLine()) {
       String line = scanner.nextLine();
-      String[] cells = line.split(",");
-
-      double lat = Double.parseDouble(cells[0]);
-      double lng = Double.parseDouble(cells[1]);
-
-      dropoffs.add(new ScrapDropoff(lat, lng));
+      Coordinate coord = new Coordinate(line);
+      dropoffs.add(new ScrapDropoff(coord.lat, coord.lng));
     }
     scanner.close();
   }
