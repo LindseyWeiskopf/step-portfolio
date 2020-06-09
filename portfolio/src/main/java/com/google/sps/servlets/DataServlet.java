@@ -59,6 +59,11 @@ public class DataServlet extends HttpServlet {
 
     response.sendRedirect("/contact.html");
   }
+  
+  private String getLanguage(HttpServletRequest request) {
+    String languageChoice = request.getParameter("language");
+    return languageChoice;
+  }
 
   private int getCommentNum(HttpServletRequest request) {
     String numChoiceString = request.getParameter("quantity");
