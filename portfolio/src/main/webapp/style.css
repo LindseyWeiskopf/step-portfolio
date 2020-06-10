@@ -7,6 +7,7 @@ div {
   margin-right: 35px;
   margin-top: 20px;
   margin-bottom: 20px;
+  height: auto;
   display: unset;
 }
 
@@ -15,8 +16,9 @@ img.sticky {
   position: sticky;
   top: 0;
   left: 0;
-  width: 75%;
+  width: 60%;
   height: auto;
+  margin: 30px;
 }
 
 hr {
@@ -37,14 +39,11 @@ h2 {
   font-family: 'Noto Sans TC', sans-serif;
   right: 0;
   color: white;
-  padding-bottom: auto;
   padding-right: 20px;
   position: absolute;
   top: 50%;
   width: 50%;
   text-align: right;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
   overflow: hidden;
 }
 
@@ -54,6 +53,7 @@ h2 {
   position: fixed;
   background-color: #ffa39c;
   font-family: 'Noto Sans TC', sans-serif;
+  height: 50px;
 }
 
 .nav a {
@@ -66,4 +66,9 @@ h2 {
 
 .nav a:hover {
   color: black;
+}
+
+#middle {
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
 }
