@@ -4,50 +4,29 @@
     <meta charset="UTF-8">
     <title>Lindsey's Portfolio</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Chewy">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
     <script src="script.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkCH60ejk__5Qi0nRt849T3QxbEoCbPvk&callback=initMap"
   type="text/javascript"></script>
   </head>
-  <body onload="initMap()"">
 
-    <div class="top-nav">
-      <a class="active" href="index.html">Home</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="contact.html">Contact</a>
+  <body onload="initMap()" onload="getComments()">
+    <div id="top-nav">
     </div>
-    <div id="introduction">
-      <h1>Hey, I'm Lindsey.</h1>
-      <h2>It's nice to meet you.</h2>
-      <h2>This is me.</h2>
-      <img src="images/profilepic.JPG"/>
+    
+    <div id="home">
     </div>
-    <div class="content">
-    <p>Here are some of the projects I've been working on:</p>
-    <ul>
-      <li>CU@Home - an augmented reality snapchat filter that lets you
-      experience Columbia University's campus from wherever you are
-      <li>Fractals with Python Turtle - An interactive program that lets
-      you create different fractals of differing orders
-      <li>Java SpellChecker - checks to see if your word is in a given
-      dictionary and gives you suggestions if it's not
-    </ul>
+
+    <div id="about">
     </div>
-    <div class="content">
-      <p>Find me on <a href="https://github.com/LindseyWeiskopf">GitHub</a> and <a href="https://www.linkedin.com/in/lindsey-weiskopf">LinkedIn</a>.</p>
+
+    <div id="work">
     </div>
-    <div class="content">    
-      <p>Click here to get a random greeting:</p>
-      <button onclick="addRandomGreeting()">Hello!</button>
-      <div id="greeting-container"></div>
+
+    <div id="maps">
     </div>
-    <div class="content">
-      <p>Click <a href="gallery.html">here</a> to see some images that I like.</p>
+
+    <div id="contact">
     </div>
-    <div class="content">
-      <p>Find me here</p>
-      <div id="map"></div>
-    </div>
+
   </body>
 </html>
