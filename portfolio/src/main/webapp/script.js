@@ -19,7 +19,8 @@ function getComments() {
   var commentNum = parseInt(document.getElementById('quantity').value);
   var languageSetting = document.getElementById('language').value;
   
-  fetch('/comments?quantity=' + commentNum + '&language=' + languageSetting).then(response => response.json()).then((posts) => {
+  const queryString = '/comments?quantity=' + commentNum + '&language=' + languageSetting;
+  fetch(queryString).then(response => response.json()).then((posts) => {
       const liElement = document.getElementById('greeting-container');
       posts.forEach((post) => {
         liElement.appendChild(createPostElement(post));
