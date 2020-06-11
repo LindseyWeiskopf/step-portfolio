@@ -39,6 +39,8 @@ import com.google.appengine.api.datastore.FetchOptions;
 public class DataServlet extends HttpServlet {
   
   private final int DEFAULT_QUANTITY = 10;
+  private final String DEFAULT_LANGUAGE = "en";
+  private final String DEFUALT_COMMENT = "--";
   
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -65,13 +67,22 @@ public class DataServlet extends HttpServlet {
   }
   
   private String getLanguage(HttpServletRequest request) {
-    String languageChoice = request.getParameter("language");
+    String languageChoice;
+    try {
+      languageChoice = request.getParameter("language");
+    } catch (NullPointerException e) {
+      return DEFAULT_LANGUAGE;
+    }
     return languageChoice;
   }
 
   private int getCommentNum(HttpServletRequest request) {
-    String numChoiceString = request.getParameter("quantity");
-   
+    String numChoiceString;
+    try {
+      numChoiceString = request.getParameter("quantity");
+    } catch (NullPointerException e) {
+      return DEFAULT_QUANTITY;
+    }
     // Convert the input to an int.
     int commentNum;
     try {
@@ -121,7 +132,12 @@ public class DataServlet extends HttpServlet {
   }
 
   private String translateComment(HttpServletRequest request, Entity entity) {
-    String originalComment = (String) entity.getProperty("comment");
+    String originalComment;
+    try {
+      originalComment = (String) entity.getProperty("comment");
+    } catch (NullPointerException e) {
+      return DEFUALT_COMMENT;
+    }
     String languageChoice = getLanguage(request);
 
     // Do the translation.
