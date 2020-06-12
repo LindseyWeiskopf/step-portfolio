@@ -9,7 +9,6 @@
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkCH60ejk__5Qi0nRt849T3QxbEoCbPvk&callback=initMap"
   type="text/javascript"></script>
   </head>
-
   <body onload="initMap()" onload="getComments()">
     <div class="nav">
       <a href="#home">home</a>
@@ -18,15 +17,13 @@
       <a href="#maps">maps</a>
       <a href="#contact">contact</a>  
     </div>
-    
     <div class="row">
       <div class="column" id="images">
         <img class="sticky" src="images/circlesun.png"/>
-        <img class="sticky" src="images/rays1.png"/>
+        <img class="sticky shorter" src="images/rays1.png"/>
         <img class="sticky" src="images/lines1.png"/>
         <img class="sticky" src="images/dots1.png"/>
       </div>
-
       <div class="column" id="content">
         <div id="home">
           <br>
@@ -57,7 +54,6 @@
           interfaces and data structures, but I am also able to to apply the interdisciplinary information from professionals 
           on the ground to use GIS software and plan workshops about computer vision for ASL users. Whether I am coding on 
           my TI-84 or on terminal, I now understand how integral CS is to our lives.</p>
-
         </div>
         <br><br>
         <div id="work">
@@ -74,64 +70,27 @@
             Supporting the Betamore co-working space by spearheading the effort to implement <i>Nexudus</i>, a software used to 
             make the office space more efficient through organized user data, CRM, room bookings, and more.</li>
           </ul>
-  
           <h3>PROJECTS</h3>
           <ul>
             <li><b>CU @ Home [Most Fun Hack Award, Virtual Campus Designathon 2020]</b>
             An augmented reality snapchat filter that lets you experience Columbia University's campus from wherever you are<li>
+            <br>
             <li class="padding-below"><b>Fractals with Python Turtle [ongoing]</b>
             An interactive program that lets you create different fractals of differing orders</li>
-            <!--TODO: Add gifs of these projects -->
           </ul>
+          <img id="fractal" src="images/fractal.gif">
+          <h4>Fractal Project in action</h4>
         </div>
         <br><br><br><br><br>
         <div id="maps">
+          <!--TODO: Integrate with more up to date maps section -->
           <h3 class="padding-above">Find me here</h3>
           <div id="map"></div>
         </div>
         <div id="contact">
+          <!--TODO: Add comments section -->
         </div>
       </div>
     </div>
-<!--
-    <div id="about" class="row">
-      <div class="column sticky">
-        <img src="images/rays1.png"/>
-      </div>
-      <div class="column">
-      </div>
-    </div>
-  
-    <div id="work" class="row">
-      <div class="column sticky">
-        <img src="images/lines1.png"/>
-      </div>
-      <div class="column">
-        <h3>WORK</h3>
-        <ul>
-          <li><b>Step Intern @ Google [wfh, May-August 2020]</b></li>
-          <li><b>BSAR @ Barnard Admissions [New York City, December 2018-present]</b></li>
-          <li><bi>Head Intern @ Betamore Inc. [Baltimore, June-August 2019]</b></li>
-        </ul>
-  
-        <h3>PROJECTS</h3>
-        <ul>
-          <li><b>CU @ Home [Most Fun Hack Award, Virtual Campus Designathon 2020]</b></li>
-          <li><b>Fractals with Python Turtle [ongoing]</b></li>
-        </ul>
-      </div>
-    </div>
-<!--
-    <div id="maps">
-      <img class="sticky" src="images/dots1.png"/>
-      <div class="content">
-      </div>
-    </div>
-
-    <div id="contact">
-      <div class="content">
-      </div>
-    </div>
--->
   </body>
 </html>
