@@ -71,6 +71,7 @@ public class DataServlet extends HttpServlet {
     try {
       languageChoice = request.getParameter("language");
     } catch (NullPointerException e) {
+      System.out.println("ERROR: " + e.getMessage());
       return DEFAULT_LANGUAGE;
     }
     return languageChoice;
@@ -81,6 +82,7 @@ public class DataServlet extends HttpServlet {
     try {
       numChoiceString = request.getParameter("quantity");
     } catch (NullPointerException e) {
+      System.out.println("ERROR: " + e.getMessage());
       return DEFAULT_QUANTITY;
     }
     // Convert the input to an int.
@@ -88,6 +90,7 @@ public class DataServlet extends HttpServlet {
     try {
       commentNum = Integer.parseInt(numChoiceString);
     } catch (NumberFormatException e) {
+      System.out.println("ERROR: " + e.getMessage());
       return DEFAULT_QUANTITY;
     }
     return commentNum;
@@ -136,6 +139,7 @@ public class DataServlet extends HttpServlet {
     try {
       originalComment = (String) entity.getProperty("comment");
     } catch (NullPointerException e) {
+      System.out.println("ERROR: " + e.getMessage());
       return DEFUALT_COMMENT;
     }
     String languageChoice = getLanguage(request);
