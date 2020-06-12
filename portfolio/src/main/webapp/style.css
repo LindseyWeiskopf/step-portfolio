@@ -20,20 +20,31 @@ hr {
 
 h1 {
   font-size: 100px;
-  padding: 0;
+  padding-top: 20%;
 }
 
 h2 {
   font-size: 50px;
-  padding: 0;
+  padding-bottom: 30%;
+}
+
+h3 {
+  font-size: 36px;
+  text-align: center;
 }
 
 p {
-  font-size: 28px;
+  font-size: 20px;
+  padding-left: 10%;
 }
 
 br {
   height: 200px;
+}
+
+ul {
+  list-style-type: none;
+  font-size: 20px;
 }
 
 div#map {
@@ -42,17 +53,27 @@ div#map {
   position: absolute;
 }
 
+.bigger-font {
+  font-size: 30px;
+  padding-top: 120px;
+}
+
 .sticky {
   position: -webkit-sticky;
   position: sticky;
   top: 0;
-  width: 80%;
+  width: 95%;
   margin: 10px;
   align-self: flex-start;
+  padding-bottom: 51%;
 }
 
 .row {
   display: flex;
+}
+
+.padding-above {
+  padding-top: 120px;
 }
 
 #images {
@@ -61,7 +82,6 @@ div#map {
 
 #content {
   width: 58%;
-  /*position: relative;*/
 }
 
 #work {
@@ -72,23 +92,6 @@ div#map {
   padding: 10px;
 }
 
-
-
-/*
-.content {
-  font-family: 'Noto Sans TC', sans-serif;
-  right: 0;
-  color: white;
-  padding-right: 20px;
-  position: absolute;
-  top: 50%;
-  width: 50%;
-  text-align: right;
-  overflow: hidden;
-  -ms-transform: translateY(-50%);
-  transform: translateY(-50%);
-}
-*/
 .nav {
   overflow: hidden;
   right: 0;
@@ -115,20 +118,4 @@ div#map {
   -ms-transform: translateY(-50%);
   transform: translateY(-50%);
   text-align: right;
-  margin-top: 200px;
-  margin-bottom: 200px;
 }
-/*
-#map {
-  height: 400px;
-  width: 400px;
-  position: absolute;
-}
-
-
-#maps {
-  height: 450px;
-  width: 450px;
-  overflow: visible;
-}
-*/
