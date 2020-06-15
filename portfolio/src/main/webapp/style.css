@@ -91,10 +91,13 @@ div#map {
 .nav {
   overflow: hidden;
   right: 0;
+  top: 0;
   position: fixed;
   background-color: #ffa39c;
   font-family: 'Noto Sans TC', sans-serif;
   height: 50px;
+  margin: 0;
+  padding-top: 5px;
 }
 
 .nav a {
