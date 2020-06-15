@@ -33,6 +33,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.google.appengine.api.datastore.FetchOptions;
+import java.util.logging;
 
 // Servlet that returns some example content. 
 @WebServlet("/comments")
@@ -41,6 +42,7 @@ public class DataServlet extends HttpServlet {
   private final int DEFAULT_QUANTITY = 10;
   private final String DEFAULT_LANGUAGE = "en";
   private final String DEFUALT_COMMENT = "--";
+  Logger logger = Logger.getLogger(DataServlet.class.getName());
   
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -71,7 +73,7 @@ public class DataServlet extends HttpServlet {
     try {
       languageChoice = request.getParameter("language");
     } catch (NullPointerException e) {
-      System.out.println("ERROR: " + e.getMessage());
+      logger.warning("No language choice, default set");
       return DEFAULT_LANGUAGE;
     }
     return languageChoice;
@@ -82,7 +84,7 @@ public class DataServlet extends HttpServlet {
     try {
       numChoiceString = request.getParameter("quantity");
     } catch (NullPointerException e) {
-      System.out.println("ERROR: " + e.getMessage());
+      logger.warning("No quantity choice, default set");
       return DEFAULT_QUANTITY;
     }
     // Convert the input to an int.
@@ -90,7 +92,7 @@ public class DataServlet extends HttpServlet {
     try {
       commentNum = Integer.parseInt(numChoiceString);
     } catch (NumberFormatException e) {
-      System.out.println("ERROR: " + e.getMessage());
+      logger.warning("Comment number is not a number, default set");
       return DEFAULT_QUANTITY;
     }
     return commentNum;
@@ -139,7 +141,7 @@ public class DataServlet extends HttpServlet {
     try {
       originalComment = (String) entity.getProperty("comment");
     } catch (NullPointerException e) {
-      System.out.println("ERROR: " + e.getMessage());
+      logger.warning("No comment, default set");
       return DEFUALT_COMMENT;
     }
     String languageChoice = getLanguage(request);
