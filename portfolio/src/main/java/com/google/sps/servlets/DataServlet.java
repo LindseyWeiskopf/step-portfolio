@@ -42,7 +42,7 @@ public class DataServlet extends HttpServlet {
   private final int DEFAULT_QUANTITY = 10;
   private final String DEFAULT_LANGUAGE = "en";
   private final String DEFUALT_COMMENT = "--";
-  Logger logger = Logger.getLogger(DataServlet.class.getName());
+  private Logger logger = Logger.getLogger(DataServlet.class.getName());
   
   @Override
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
