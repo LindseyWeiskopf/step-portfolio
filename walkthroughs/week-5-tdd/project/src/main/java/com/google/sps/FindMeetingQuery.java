@@ -27,7 +27,6 @@ public final class FindMeetingQuery {
   List<TimeRange> freeTimes = new ArrayList<>();
 
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
-    //throw new UnsupportedOperationException("TODO: Implement this method.");
     busyTimes = getBusyTimes(events, request);
     List<TimeRange> overlappingTimes = findOverlappingTimes();
     return (getFreeTimes(overlappingTimes, request));
@@ -59,7 +58,7 @@ public final class FindMeetingQuery {
         tempEndTime = timeRange.end();
       }
       else if (timeRange.start() > tempEndTime) {
-        overlappingTimes.add(TimeRange.fromStartEnd(tempEndTime, tempEndTime, false));
+        overlappingTimes.add(TimeRange.fromStartEnd(tempStartTime, tempEndTime, false));
         tempStartTime = timeRange.start();
         tempEndTime = timeRange.end();
       } 
@@ -67,14 +66,11 @@ public final class FindMeetingQuery {
         ;
       }
     } 
-    if (tempStartTime != -1) {
-      overlappingTimes.add(TimeRange.fromStartEnd(tempStartTime, tempEndTime, false));
-    }
+    overlappingTimes.add(TimeRange.fromStartEnd(tempStartTime, tempEndTime, false));
     return overlappingTimes;
   }
 
   private Collection<TimeRange> getFreeTimes(List<TimeRange> overlappingTimes, MeetingRequest request) {
-    System.out.println(overlappingTimes);
     int tempStartTime = 0;
     int tempEndTime = 0;
     for (TimeRange timeRange : overlappingTimes) {
