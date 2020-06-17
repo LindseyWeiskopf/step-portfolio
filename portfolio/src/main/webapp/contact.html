@@ -36,6 +36,17 @@
       <br></br>
       <input type="submit" onclick="getComments()"/>
       <br/><br/>
+      
+      <label for="language">Choose a language:</label>
+      <select name="language" id="language" onchange="getComments()">
+        <option value="en">English</option>
+        <option value="es">Spanish</option>
+        <option value="ar">Arabic</option>
+        <option value="zh">Chinese</option>
+        
+      </select>
+      <br><br>
+    
     </div>  
     <ul id="greeting-container"></ul>
     
