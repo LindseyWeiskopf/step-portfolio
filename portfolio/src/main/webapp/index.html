@@ -4,39 +4,93 @@
     <meta charset="UTF-8">
     <title>Lindsey's Portfolio</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC&display=swap" rel="stylesheet">
     <script src="script.js"></script>
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAkCH60ejk__5Qi0nRt849T3QxbEoCbPvk&callback=initMap"
   type="text/javascript"></script>
   </head>
-
   <body onload="initMap()" onload="getComments()">
     <div class="nav">
       <a href="#home">home</a>
-      <a href="#about">about</a>
+      <a href="#about">about</a> 
       <a href="#work">work&projects</a>
       <a href="#maps">maps</a>
-      <a href="#contact">contact</a>
-      
-      
-      
-      
-      
+      <a href="#contact">contact</a>  
     </div>
-    
-    <div id="home">
+    <div class="row">
+      <div class="column" id="images">
+        <img class="sticky" src="images/circlesun.png"/>
+        <img class="sticky shorter" src="images/rays1.png"/>
+        <img class="sticky" src="images/lines1.png"/>
+        <img class="sticky" src="images/dots1.png"/>
+      </div>
+      <div class="column" id="content">
+        <div id="home">
+          <br>
+          <h1>Lindsey Weiskopf</h1>
+          <hr>
+          <h2><i>student, engineer, creative seeking the next adventure</i></h2>
+          <br>
+        </div>
+        <div id="about">
+          <p class="bigger-font"><strong>Hi, my name is Lindsey, and it's so nice to meet you!</strong> 
+          I am currently a student at Barnard College studying Computer Science, Architecture, and 
+          History. I love to create, code,and think critically about the rapidly changing technological 
+          world. When I'm not in front of a computer screen, I like to read, curate spotify playlists, and 
+          find some of the hidden wonders of the world</p>
+          <br><br>
+          <h3><i>MY STORY TO CS</i></h3>
+          <p>When I was in middle school, I learned how to code on my TI-84 calculator because
+          I couldn't remember the quadratic formula. At the time I had no idea that I was programming a 
+          small computer, but I realized that I could make my life easier by teaching my calculator
+          something that I couldn't teach myself.</p>
+          <p>Of course, since then I’ve programmed more complex machines than a plastic rectangle. And I 
+          now understand that when working at its best, CS makes life more accessible for people with different 
+          needs, globally.</p>
+          <p>Through the lens of accessibility, I have sought exposure to the tech field and its critical 
+          intersections. By attending talks and panels with industry and industry-adjacent professionals, 
+          I have learned about topics beyond the scope of data structures such as GIS, computer vision, and 
+          computer architecture. In turn, I am able to apply the information from my professors such as implementing 
+          interfaces and data structures, but I am also able to to apply the interdisciplinary information from professionals 
+          on the ground to use GIS software and plan workshops about computer vision for ASL users. Whether I am coding on 
+          my TI-84 or on terminal, I now understand how integral CS is to our lives.</p>
+        </div>
+        <br><br>
+        <div id="work">
+          <h3 class="padding-above">WORK</h3>
+          <ul>
+            <li><b>Step Intern @ Google [wfh, May-August 2020]</b>
+            Creating this portfolio to build the skills to design, implement, and iterate a capstone project that supports
+            google mission "to organize the world's information and make it universally accessible and useful."</li>
+            <br>
+            <li><b>BSAR @ Barnard Admissions [New York City, December 2018-present]</b>
+            Giving campus tours and supporting admissions staff to warmly welcome prospective students to Barnard College.</li>
+            <br>
+            <li><b>Head Intern @ Betamore Inc. [Baltimore, June-August 2019]</b>
+            Supporting the Betamore co-working space by spearheading the effort to implement <i>Nexudus</i>, a software used to 
+            make the office space more efficient through organized user data, CRM, room bookings, and more.</li>
+          </ul>
+          <h3>PROJECTS</h3>
+          <ul>
+            <li><b>CU @ Home [Most Fun Hack Award, Virtual Campus Designathon 2020]</b>
+            An augmented reality snapchat filter that lets you experience Columbia University's campus from wherever you are<li>
+            <br>
+            <li class="padding-below"><b>Fractals with Python Turtle [ongoing]</b>
+            An interactive program that lets you create different fractals of differing orders</li>
+          </ul>
+          <img id="fractal" src="images/fractal.gif">
+          <h4>Fractal Project in action</h4>
+        </div>
+        <br><br><br><br><br>
+        <div id="maps">
+          <!--TODO: Integrate with more up to date maps section -->
+          <h3 class="padding-above">Find me here</h3>
+          <div id="map"></div>
+        </div>
+        <div id="contact">
+          <!--TODO: Add comments section -->
+        </div>
+      </div>
     </div>
-
-    <div id="about">
-    </div>
-
-    <div id="work">
-    </div>
-
-    <div id="maps">
-    </div>
-
-    <div id="contact">
-    </div>
-
   </body>
 </html>

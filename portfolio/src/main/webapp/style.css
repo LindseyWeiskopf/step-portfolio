@@ -1,18 +1,103 @@
 body {
-  background-color: #f58c84;
+  background-color: #ffa39c;
+  height: 100%;
+  font-family: 'Noto Sans TC', sans-serif;
+  color: white;
 }
 
 div {
-  margin-left: 20px;
-  margin-right: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
   margin-top: 20px;
   margin-bottom: 20px;
+  display: unset;
+}
+
+hr {
+  border: 4px solid white;
+  text-align: right;
+}
+
+h1 {
+  font-size: 100px;
+  padding-top: 20%;
+}
+
+h2 {
+  font-size: 50px;
+  padding-bottom: 30%;
+}
+
+h3 {
+  font-size: 36px;
+  text-align: center;
+}
+
+h4 {
+  text-align: center;
+}
+
+p {
+  font-size: 20px;
+  padding-left: 10%;
+}
+
+br {
+  height: 200px;
+}
+
+ul {
+  list-style-type: none;
+  font-size: 20px;
+}
+
+div#map {
+  width: 50%;
+  height: 60%;
+  position: absolute;
+}
+
+.bigger-font {
+  font-size: 30px;
+  padding-top: 120px;
+}
+
+.sticky {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  width: 95%;
+  margin: 10px;
+  align-self: flex-start;
+  padding-bottom: 51%;
+}
+
+.shorter {
+  padding-bottom: 35%;
+}
+
+.row {
+  display: flex;
+}
+
+.padding-above {
+  padding-top: 120px;
+}
+
+.column {
+  padding: 10px;
 }
 
 .nav {
   overflow: hidden;
   right: 0;
+  top: 0;
   position: fixed;
+  background-color: #ffa39c;
+  font-family: 'Noto Sans TC', sans-serif;
+  height: 50px;
+  margin: 0;
+  padding-top: 5px;
 }
 
 .nav a {
@@ -25,4 +110,31 @@ div {
 
 .nav a:hover {
   color: black;
+}
+
+#images {
+  width: 40%;
+}
+
+#content {
+  width: 58%;
+}
+
+#work {
+  margin-top: 200px;
+  margin-bottom: 200px;
+}
+
+#home {
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  text-align: right;
+}
+
+#fractal {
+  width: 30%;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
