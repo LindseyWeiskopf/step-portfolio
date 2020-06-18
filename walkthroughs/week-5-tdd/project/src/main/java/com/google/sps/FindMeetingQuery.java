@@ -23,13 +23,12 @@ import java.util.LinkedList;
 import java.util.Comparator;
 
 public final class FindMeetingQuery {
-  List<TimeRange> busyTimes = new ArrayList<>();
-  List<TimeRange> freeTimes = new ArrayList<>();
+  private List<TimeRange> busyTimes = new ArrayList<>();
+  private List<TimeRange> freeTimes = new ArrayList<>();
 
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
     busyTimes = getBusyTimes(events, request);
-    List<TimeRange> overlappingTimes = findOverlappingTimes();
-    return (getFreeTimes(overlappingTimes, request));
+    return (getFreeTimes(findOverlappingTimes(), request));
   }
 
   // Compare attendees of given events with attendees for requested meeting to determine conflicts
@@ -48,6 +47,7 @@ public final class FindMeetingQuery {
   // Returns list of consolidated busy time ranges accounting for overlapping events
   private List<TimeRange> findOverlappingTimes() {
     List<TimeRange> overlappingTimes = new ArrayList<>();
+    // variables used to keep track of start and end times of previous relevant busy time blocks
     int tempStartTime = -1;
     int tempEndTime = 0;
     for (TimeRange timeRange : busyTimes) {
@@ -63,9 +63,6 @@ public final class FindMeetingQuery {
         tempStartTime = timeRange.start();
         tempEndTime = timeRange.end();
       } 
-      else {
-        ;
-      }
     } 
     overlappingTimes.add(TimeRange.fromStartEnd(tempStartTime, tempEndTime, false));
     return overlappingTimes;
@@ -73,6 +70,7 @@ public final class FindMeetingQuery {
   
   // Gets list of time slots where no attendess have any meetings >= duration time
   private Collection<TimeRange> getFreeTimes(List<TimeRange> overlappingTimes, MeetingRequest request) {
+    // variables used to keep track of start and end times of previous relevant busy time blocks
     int tempStartTime = 0;
     int tempEndTime = 0;
     for (TimeRange timeRange : overlappingTimes) {
