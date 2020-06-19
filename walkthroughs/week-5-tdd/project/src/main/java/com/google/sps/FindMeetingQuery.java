@@ -48,45 +48,47 @@ public final class FindMeetingQuery {
   private List<TimeRange> findOverlappingTimes() {
     List<TimeRange> overlappingTimes = new ArrayList<>();
     // variables used to keep track of start and end times of previous relevant busy time blocks
-    int tempStartTime = -1;
-    int tempEndTime = 0;
+    int prevStartTime = -1;
+    int prevEndTime = 0;
     for (TimeRange timeRange : busyTimes) {
-      if (tempStartTime == -1) {
-        tempStartTime = timeRange.start();
-        tempEndTime = timeRange.end();
+      if (prevStartTime == -1) {
+        prevStartTime = timeRange.start();
+        prevEndTime = timeRange.end();
       }
-      else if ((timeRange.start() <= tempEndTime) && (timeRange.end() >= tempEndTime)){
-        tempEndTime = timeRange.end();
+      // events overlap
+      else if ((timeRange.start() <= prevEndTime) && (timeRange.end() >= prevEndTime)){
+        prevEndTime = timeRange.end();
       }
-      else if (timeRange.start() > tempEndTime) {
-        overlappingTimes.add(TimeRange.fromStartEnd(tempStartTime, tempEndTime, false));
-        tempStartTime = timeRange.start();
-        tempEndTime = timeRange.end();
+      // events do not overlap
+      else if (timeRange.start() > prevEndTime) {
+        overlappingTimes.add(TimeRange.fromStartEnd(prevStartTime, prevEndTime, false));
+        prevStartTime = timeRange.start();
+        prevEndTime = timeRange.end();
       } 
     } 
-    overlappingTimes.add(TimeRange.fromStartEnd(tempStartTime, tempEndTime, false));
+    overlappingTimes.add(TimeRange.fromStartEnd(prevStartTime, prevEndTime, false));
     return overlappingTimes;
   }
   
   // Gets list of time slots where no attendess have any meetings >= duration time
   private Collection<TimeRange> getFreeTimes(List<TimeRange> overlappingTimes, MeetingRequest request) {
     // variables used to keep track of start and end times of previous relevant busy time blocks
-    int tempStartTime = 0;
-    int tempEndTime = 0;
+    int prevStartTime = 0;
+    int prevEndTime = 0;
     for (TimeRange timeRange : overlappingTimes) {
       if (timeRange.start() == 0) {
-        tempStartTime = timeRange.end();
+        prevStartTime = timeRange.end();
       }
       else {
-        tempEndTime = timeRange.start();
-        if ((tempEndTime - tempStartTime) >= request.getDuration()) { 
-          freeTimes.add(TimeRange.fromStartEnd(tempStartTime, tempEndTime, false));
+        prevEndTime = timeRange.start();
+        if ((prevEndTime - prevStartTime) >= request.getDuration()) { 
+          freeTimes.add(TimeRange.fromStartEnd(prevStartTime, prevEndTime, false));
         }
-        tempStartTime = timeRange.end();
+        prevStartTime = timeRange.end();
       }
     }
-    if ((TimeRange.END_OF_DAY - tempStartTime) >= request.getDuration()) { 
-      freeTimes.add(TimeRange.fromStartEnd(tempStartTime, TimeRange.END_OF_DAY, true));
+    if ((TimeRange.END_OF_DAY - prevStartTime) >= request.getDuration()) { 
+      freeTimes.add(TimeRange.fromStartEnd(prevStartTime, TimeRange.END_OF_DAY, true));
     }
     return freeTimes;
   }
