@@ -28,7 +28,10 @@ public final class FindMeetingQuery {
 
   public Collection<TimeRange> query(Collection<Event> events, MeetingRequest request) {
     busyTimes = getBusyTimes(events, request);
-    return (getFreeTimes(findOverlappingTimes(), request));
+    if (busyTimes.size() > 0) {
+      return (getFreeTimes(findOverlappingTimes(), request));
+    }
+    return (getFreeTimes(busyTimes, request));
   }
 
   // Compare attendees of given events with attendees for requested meeting to determine conflicts
@@ -47,48 +50,46 @@ public final class FindMeetingQuery {
   // Returns list of consolidated busy time ranges accounting for overlapping events
   private List<TimeRange> findOverlappingTimes() {
     List<TimeRange> overlappingTimes = new ArrayList<>();
-    // variables used to keep track of start and end times of previous relevant busy time blocks
-    int prevStartTime = -1;
-    int prevEndTime = 0;
-    for (TimeRange timeRange : busyTimes) {
-      if (prevStartTime == -1) {
-        prevStartTime = timeRange.start();
-        prevEndTime = timeRange.end();
+    // Variables used to keep track of start and end times of previous relevant busy time blocks
+    int prevStart = busyTimes.get(0).start();
+    int prevEnd = busyTimes.get(0).end();
+    for (int i = 1; i < busyTimes.size(); i++) {
+      int currentStart = busyTimes.get(i).start();
+      int currentEnd = busyTimes.get(i).end();
+      if (currentStart > prevEnd) {
+        overlappingTimes.add(TimeRange.fromStartEnd(prevStart, prevEnd, false));
+        prevStart = currentStart;
+        prevEnd = currentEnd;
       }
-      // events overlap
-      else if ((timeRange.start() <= prevEndTime) && (timeRange.end() >= prevEndTime)){
-        prevEndTime = timeRange.end();
+      else if (currentEnd > prevEnd) {
+        prevEnd = currentEnd;
       }
-      // events do not overlap
-      else if (timeRange.start() > prevEndTime) {
-        overlappingTimes.add(TimeRange.fromStartEnd(prevStartTime, prevEndTime, false));
-        prevStartTime = timeRange.start();
-        prevEndTime = timeRange.end();
-      } 
-    } 
-    overlappingTimes.add(TimeRange.fromStartEnd(prevStartTime, prevEndTime, false));
+    }
+    overlappingTimes.add(TimeRange.fromStartEnd(prevStart, prevEnd, false));
     return overlappingTimes;
   }
   
   // Gets list of time slots where no attendess have any meetings >= duration time
   private Collection<TimeRange> getFreeTimes(List<TimeRange> overlappingTimes, MeetingRequest request) {
-    // variables used to keep track of start and end times of previous relevant busy time blocks
-    int prevStartTime = 0;
-    int prevEndTime = 0;
+    // Variables used to keep track of start and end times of previous relevant busy time blocks
+    int prevStart = 0;
+    int prevEnd = 0;
     for (TimeRange timeRange : overlappingTimes) {
-      if (timeRange.start() == 0) {
-        prevStartTime = timeRange.end();
+      int currentStart = timeRange.start();
+      int currentEnd = timeRange.end();
+      if (currentStart == 0) {
+        prevStart = currentEnd;
       }
       else {
-        prevEndTime = timeRange.start();
-        if ((prevEndTime - prevStartTime) >= request.getDuration()) { 
-          freeTimes.add(TimeRange.fromStartEnd(prevStartTime, prevEndTime, false));
+        prevEnd = currentStart;
+        if ((prevEnd - prevStart) >= request.getDuration()) { 
+          freeTimes.add(TimeRange.fromStartEnd(prevStart, prevEnd, false));
         }
-        prevStartTime = timeRange.end();
+        prevStart = currentEnd;
       }
     }
-    if ((TimeRange.END_OF_DAY - prevStartTime) >= request.getDuration()) { 
-      freeTimes.add(TimeRange.fromStartEnd(prevStartTime, TimeRange.END_OF_DAY, true));
+    if ((TimeRange.END_OF_DAY - prevStart) >= request.getDuration()) { 
+      freeTimes.add(TimeRange.fromStartEnd(prevStart, TimeRange.END_OF_DAY, true));
     }
     return freeTimes;
   }
