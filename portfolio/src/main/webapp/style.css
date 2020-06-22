@@ -37,11 +37,6 @@ h4 {
   text-align: center;
 }
 
-p {
-  font-size: 20px;
-  padding-left: 10%;
-}
-
 br {
   height: 200px;
 }
@@ -51,9 +46,16 @@ ul {
   font-size: 20px;
 }
 
+button, input {
+  padding: 5px;
+  background-color: white;
+  color: #ffa39c;
+  font-family: 'Noto Sans TC', sans-serif;
+}
+
 div#map {
   width: 50%;
-  height: 60%;
+  height: 40%;
   position: absolute;
 }
 
@@ -112,6 +114,26 @@ div#map {
   color: black;
 }
 
+.post {
+  border: thin solid black;
+  display: flex;
+  padding: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 650px;
+}
+
+.post span {
+  flex-grow: 1;
+}
+
+#greeting-container {
+  text-align: center;
+  margin-top: 20px;
+}
+
 #images {
   width: 40%;
 }
@@ -137,4 +159,17 @@ div#map {
   display: block;
   margin-left: auto;
   margin-right: auto;
+}
+
+h3#contact {
+  padding-top: 900px;
+}
+
+#contact {
+  margin-right: auto;
+  margin-left: auto;
+  width: 650px;
+  display: block;
+  text-align: left;
+  padding-left: 0;
 }
