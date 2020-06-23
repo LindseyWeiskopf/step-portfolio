@@ -65,7 +65,7 @@ public class DataServlet extends HttpServlet {
     DatastoreService datastore = DatastoreServiceFactory.getDatastoreService();
     datastore.put(commentEntity);
 
-    response.sendRedirect("/contact.html");
+    response.sendRedirect("/index.html#contact");
   }
   
   private String getLanguage(HttpServletRequest request) {
