@@ -77,6 +77,7 @@ public final class FindMeetingQuery {
     for (TimeRange timeRange : overlappingTimes) {
       int currentStart = timeRange.start();
       int currentEnd = timeRange.end();
+      // First event starts at midnight (beginning of day)
       if (currentStart == 0) {
         prevStart = currentEnd;
       }
