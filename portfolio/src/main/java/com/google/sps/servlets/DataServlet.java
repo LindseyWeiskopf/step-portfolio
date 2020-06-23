@@ -33,7 +33,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.google.appengine.api.datastore.FetchOptions;
-import java.util.logging;
+import java.util.logging.Logger;
 
 // Servlet that returns some example content. 
 @WebServlet("/comments")
